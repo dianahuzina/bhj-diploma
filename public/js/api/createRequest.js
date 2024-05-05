@@ -11,19 +11,15 @@ const createRequest = (options = {}) => {
   if (options.method === 'GET') {
     const queryParams = new URLSearchParams(options.data);
     url = `${url}?${queryParams.toString()}`;
-    xhr.open(options.method, url);
-    xhr.send();
   } else {
     for (let key in options.data) {
       formData.append(key, options.data[key]);
     }
-    xhr.open(options.method, url);
-    xhr.send(formData);
   }
-
+  xhr.open(options.method, url);
+  xhr.send(formData);
+  
   xhr.addEventListener('load', () => {
-    const response = xhr.response;
-    const err = response.error;
-    options.callback(err, response);
+    options.callback(xhr.response.error, xhr.response);
   });
 };

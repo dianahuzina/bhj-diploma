@@ -33,7 +33,7 @@ class TransactionsPage {
    * */
   registerEvents() {
     this.element.addEventListener('click', (e) => {
-      e.preventDefalut;
+      e.preventDefault();
       if(e.target.closest(".remove-account")) {
         this.removeAccount();
       } else {
